@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="fragments/resources :: headResources('Photo Gallery')"></head>
+
+<body style="background-color: #222">
+<header>
+	<nav th:replace="fragments/navBar :: topNavBar('photos')"></nav>
+</header>
+
+<main th:object="${photo}">
+	<div class="container text-light">
+		
+		<h1 class="p-2 g-col-6 mt-3"> 📸📸📸 Photo Gallery 📸📸📸</h1>
+		<h2 th:text="${photo.title}"></h2>
+		<hr class="mb-5">
+		
+		<div class="card text-bg-dark" style="max-width: 1000px;">
+			<img th:src="*{url}" class="card-img" alt="...">
+			<div class="card-img-overlay">
+				<h5 th:text="*{title}">Card title</h5>
+				<p class="card-text" th:text="*{description}"></p>
+			</div>
+		</div>
+	</div>
+</main>
+</body>
+</html>

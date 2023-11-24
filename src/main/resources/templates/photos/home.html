@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="fragments/resources :: headResources('Photo Gallery')"></head>
+
+<body
+		style="background-image: url('https://tinyurl.com/yfpxkxrn'); background-size: cover; background-position: center; height: 100vh; color: #ffffff; filter: grayscale(100%);">
+<header>
+</header>
+
+<main>
+	<div class="container d-flex justify-content-center flex-column ">
+		<h1 class="text-center">welcome to your photo album</h1>
+		<div class=" d-flex justify-content-center">
+			<a th:href="@{/photos}" class="btn btn-light col-3">GO</a>
+		</div>
+	</div>
+
+</main>
+
+
+</body>
+</html>
