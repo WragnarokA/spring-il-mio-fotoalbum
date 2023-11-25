@@ -1,6 +1,8 @@
 package com.spring.fotoAlbum.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "photos")
@@ -10,11 +12,21 @@ public class Photo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @NotBlank(message = "Name must not be blank")
+    @Size(min = 3)
+    @Size(max = 255)
     private String title;
+
     @Lob
+    @NotBlank(message = "Description must not be blank")
+    @Size(min = 3)
     private String description;
+
     @Lob
+    @NotBlank(message = "Image must not be blank")
+    @Size(min = 3)
     private String url;
+
     private boolean visibile;
 //    private List<Categories> categories;
 

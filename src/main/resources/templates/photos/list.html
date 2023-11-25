@@ -10,17 +10,42 @@
 <main>
 	
 	<div class="container text-light ">
-		
-		<h1 class="p-2 g-col-6 mt-3"> 📸📸📸 Photo Gallery 📸📸📸</h1>
-		<hr class="mb-5">
+		<div class=" row d.flex">
+			<div class="col-7">
+				<h1 class="p-2 g-col-6 mt-3"> 📸📸📸 Photo Gallery 📸📸📸</h1>
+			</div>
+			<div class="col-5 d-flex align-items-center">
+				<form th:action="@{/photos}" method="GET" class="d-flex my-3 col-12">
+					<div class="input-group  ">
+						<input class="form-control me-2  " type="text" placeholder="Search" name="search"
+						       th:value="${param.search}">
+						<button class="btn btn-outline-success text-light col-3" type="submit">Search Photo</button>
+					</div>
+				</form>
+			</div>
+		</div>
+		<hr class="">
+		<div th:replace="fragments/components :: message"></div>
+		<a th:href="@{/photos/create}" class="btn bg-success p-2 text-white bg-opacity-50 mb-3   ">Add new Photo</a>
 		
 		<div class="d-flex  flex-wrap justify-content-between gap-5">
-			<div th:each="photo: ${photoList}" th:object="${photo}" class="card" style="width: 18rem;">
-				<img th:src="*{url}" class="card-img-top" alt="...">
+			<div th:each="photo: ${photoList}" th:object="${photo}" class="card " style="width: 18rem;">
+				<img th:src="*{url}" class="card-img-top " style="max-height: 140px;" alt="...">
 				<div class="card-body">
 					<h5 th:text="*{title}" class="card-title">Card title</h5>
 					<p th:text="*{description}" class="card-text"></p>
-					<a th:href="@{photos/show/{id}(id=*{id})}" class="btn btn-primary">Details</a>
+					<div class="btn-group" role="group" aria-label="Basic mixed styles example">
+						<a th:href="@{photos/show/{id}(id=*{id})}" type="button" class="btn btn-success">Details
+							<i class="fa-solid fa-image"></i></a>
+						<a th:href="@{photos/edit/{id}(id=*{id})}" type="button" class="btn btn-warning text-light">Edit
+							<i class="fa-solid fa-pen-to-square"></i></a>
+						<form method="POST" th:action="@{/photos/delete/{id}(id=*{id})}"
+						      onsubmit="return confirm('Are you sure?')">
+							<button class="btn btn-danger" type="submit">
+								Delete <i class="fa-solid fa-trash"></i>
+							</button>
+						</form>
+					</div>
 				</div>
 			</div>
 		

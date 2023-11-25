@@ -3,15 +3,15 @@
 <head th:insert="fragments/resources :: headResources('Photo Gallery')"></head>
 
 <body
-		style="background-image: url('https://tinyurl.com/yfpxkxrn'); background-size: cover; background-position: center; height: 100vh; color: #ffffff; filter: grayscale(100%);">
+		style="background-image: url('https://tinyurl.com/yfpxkxrn'); background-size: cover; background-position: center; height: 100vh;">
 <header>
 </header>
 
 <main>
-	<div class="container d-flex justify-content-center flex-column ">
-		<h1 class="text-center">welcome to your photo album</h1>
+	<div class="container d-flex justify-content-center flex-column mt-5">
+		<h1 class="text-light text-center">WELCOME TO YOUR PHOTO ALBUM</h1>
 		<div class=" d-flex justify-content-center">
-			<a th:href="@{/photos}" class="btn btn-light col-3">GO</a>
+			<a th:href="@{/photos}" class="btn bg-success p-2 text-white bg-opacity-50 mb-3  col-2">GO</a>
 		</div>
 	</div>
 

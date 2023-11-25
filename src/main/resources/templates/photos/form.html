@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:with="isEdit=${photo.id != null}">
+<head th:insert="fragments/resources :: headResources(${isEdit ? 'Edit Photo' : 'Create Photo'})"></head>
+
+<body style="background-color: #222">
+<header>
+	<nav th:replace="fragments/navBar :: topNavBar('photos')"></nav>
+</header>
+
+<main>
+	
+	<div class="container text-light ">
+		<div class=" row d.flex">
+			<div class="col-7">
+				<h1 class="p-2 g-col-6 mt-3" th:text="${isEdit ? '📸📸📸 Edit Photo 📸📸📸' : '📸📸📸 Create Photo 📸📸📸'}"></h1>
+				
+				<form
+						th:with="actionUrl=${isEdit ? '/photos/edit/'+photo.id : '/photos/create'}"
+						id="photo-crate"
+						method="POST"
+						th:action="@{${actionUrl}}"
+						th:object="${photo}"
+						class="row"
+				>
+					<div class="col-4 mb-3" th:insert="fragments/components :: formField('text', 'Title', 'title')"></div>
+					<div class="col-4 mb-3" th:insert="fragments/components :: formField('text', 'Image', 'url')"></div>
+					<div class="col-12 d-flex justify-content-between">
+						
+						<div class="col-5 mb-3">
+							<label for="description" class="form-label">Description</label>
+							<textarea id="description" class="form-control" rows="5" th:field="*{description}"> </textarea>
+						</div>
+					</div>
+					
+					<div class="col-12 ">
+						<button class=" btn btn-primary " type="submit">Save</button>
+						<a th:href="@{/photos}" class=" mx-5 btn btn-primary">Go to Pizze</a>
+					</div>
+				
+				</form>
+			</div>
+		</div>
+	</div>
+</main>
+</body>
+</html>
