@@ -25,7 +25,7 @@
 					   th:href="@{/photos}">Photo Gallery</a>
 				</li>
 				<li class="nav-item" sec:authorize="hasAuthority('ADMIN')">
-					<a class="nav-link text-light" th:classAppend="${area == 'ingredients' ? 'active' : ''}"
+					<a class="nav-link text-light" th:classAppend="${area == 'categories' ? 'active' : ''}"
 					   th:href="@{/categories}">Category</a>
 				</li>
 			</ul>
