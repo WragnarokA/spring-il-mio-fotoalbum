@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" th:with="isEdit=${photo.id != null}">
+<html lang="en" th:with="isEdit=${photo.id != null}" xmlns:th="http://www.thymeleaf.org">
 <head th:insert="fragments/resources :: headResources(${isEdit ? 'Edit Photo' : 'Create Photo'})"></head>
 
 <body style="background-color: #222">
@@ -15,26 +15,42 @@
 				<h1 class="p-2 g-col-6 mt-3" th:text="${isEdit ? '📸📸📸 Edit Photo 📸📸📸' : '📸📸📸 Create Photo 📸📸📸'}"></h1>
 				
 				<form
-						th:with="actionUrl=${isEdit ? '/photos/edit/'+photo.id : '/photos/create'}"
+						class="row "
 						id="photo-crate"
 						method="POST"
 						th:action="@{${actionUrl}}"
 						th:object="${photo}"
-						class="row"
+						th:with="actionUrl=${isEdit ? '/photos/edit/'+photo.id : '/photos/create'}"
 				>
 					<div class="col-4 mb-3" th:insert="fragments/components :: formField('text', 'Title', 'title')"></div>
 					<div class="col-4 mb-3" th:insert="fragments/components :: formField('text', 'Image', 'url')"></div>
-					<div class="col-12 d-flex justify-content-between">
-						
-						<div class="col-5 mb-3">
-							<label for="description" class="form-label">Description</label>
-							<textarea id="description" class="form-control" rows="5" th:field="*{description}"> </textarea>
+					
+					<div class="d-flex">
+						<div class="col-6 d-flex justify-content-between">
+							<div class="col-10 mb-3">
+								<label class="form-label" for="description">Description</label>
+								<textarea class="form-control" id="description" rows="5" th:field="*{description}"> </textarea>
+							</div>
 						</div>
+						
+						<div class="col-6 flex-column">
+							<p>Categories:</p>
+							<div class="d-flex flex-wrap gap-4 ">
+								<div class="form-check " th:each="cat : ${categoryList}">
+									<input class="form-check-input" type="checkbox" th:value="${cat.id}" th:id="|cat_${cat.id}|"
+									       th:field="*{categories}">
+									<label class="form-check-label" th:for="|cat_${cat.id}|" th:text="${cat.name}"></label>
+								</div>
+							</div>
+						
+						</div>
+					
+					
 					</div>
 					
 					<div class="col-12 ">
 						<button class=" btn btn-primary " type="submit">Save</button>
-						<a th:href="@{/photos}" class=" mx-5 btn btn-primary">Go to Pizze</a>
+						<a class=" mx-5 btn btn-primary" th:href="@{/photos}">Go to Pizze</a>
 					</div>
 				
 				</form>

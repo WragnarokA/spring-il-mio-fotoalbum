@@ -3,6 +3,7 @@ package com.spring.fotoAlbum.controller;
 import com.spring.fotoAlbum.exceptions.PhotoNotFoundException;
 import com.spring.fotoAlbum.model.Photo;
 import com.spring.fotoAlbum.repository.PhotoRepository;
+import com.spring.fotoAlbum.service.CategoryService;
 import com.spring.fotoAlbum.service.PhotoService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,9 @@ public class PhotoController {
     private PhotoRepository photoRepository;
     @Autowired
     private PhotoService photoService;
+    @Autowired
+    private CategoryService categoryService;
+
 
     @GetMapping
     public String index(@RequestParam Optional<String> search, Model model) {
@@ -49,7 +53,7 @@ public class PhotoController {
     @GetMapping("/create")
     public String create(Model model) {
         model.addAttribute("photo", new Photo());
-//        model.addAttribute("ingredientList", ingredientService.getAll());
+        model.addAttribute("categoryList", categoryService.getAll());
         return "/photos/form";
     }
 
@@ -68,6 +72,7 @@ public class PhotoController {
         try {
             //Dal id recupero i dati  della pizza
             model.addAttribute("photo", photoService.getPhotoById(id));
+            model.addAttribute("categoryList", categoryService.getAll());
             return "/photos/form";
         } catch (PhotoNotFoundException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Photo with id " + id + " not found");

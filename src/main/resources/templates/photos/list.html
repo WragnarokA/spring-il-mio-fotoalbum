@@ -29,11 +29,24 @@
 		<a th:href="@{/photos/create}" class="btn bg-success p-2 text-white bg-opacity-50 mb-3   ">Add new Photo</a>
 		
 		<div class="d-flex  flex-wrap justify-content-between gap-5">
-			<div th:each="photo: ${photoList}" th:object="${photo}" class="card " style="width: 18rem;">
+			
+			<div th:each="photo : ${photoList}" th:object="${photo}" class="card " style="width: 18rem;">
 				<img th:src="*{url}" class="card-img-top " style="max-height: 140px;" alt="...">
 				<div class="card-body">
 					<h5 th:text="*{title}" class="card-title">Card title</h5>
-					<p th:text="*{description}" class="card-text"></p>
+					<p th:text="*{description}" class="card-text">description</p>
+					
+					<ul th:if="${photo.categories.size() > 0}" class="list-group list-group-flush  mb-3">
+						<li class="list-group-item " aria-current="true"><h5>Categories:</h5></li>
+						<li th:each="cat : ${photo.categories}" class="list-group-item" th:text="${cat.name}"></li>
+					</ul>
+					
+					<!--					<div class="form-check form-switch mt-4">-->
+					<!--						<input th:field="*{visibile}" checked class="form-check-input" id="flexSwitchCheckChecked" role="switch"-->
+					<!--						       type="checkbox">-->
+					<!--						<label class="form-check-label" for="flexSwitchCheckChecked">Visible</label>-->
+					<!--					</div>-->
+					
 					<div class="btn-group" role="group" aria-label="Basic mixed styles example">
 						<a th:href="@{photos/show/{id}(id=*{id})}" type="button" class="btn btn-success">Details
 							<i class="fa-solid fa-image"></i></a>
