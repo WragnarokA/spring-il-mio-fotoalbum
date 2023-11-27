@@ -34,7 +34,6 @@ public class Photo {
     @ManyToMany(fetch = FetchType.LAZY)
     private List<Category> categories;
 
-    //*****CONSTRUCTOR*****
 
     //*****GETTER AND SETTER****
 
@@ -86,4 +85,5 @@ public class Photo {
     public void setCategories(List<Category> categories) {
         this.categories = categories;
     }
+
 }
