@@ -10,6 +10,9 @@ INSERT INTO categories (name) VALUES('Architecture');
 INSERT INTO categories (name) VALUES('Still life');
 INSERT INTO categories (name) VALUES('Events');
 
+INSERT INTO `photos_categories`(`photo_id`, `categories_id`) VALUES ('1','1')
+INSERT INTO `photos_categories`(`photo_id`, `categories_id`) VALUES ('1','3')
+
 INSERT INTO roles (id, name) VALUES(1, 'ADMIN');
 INSERT INTO roles (id, name) VALUES(2, 'USER');
 

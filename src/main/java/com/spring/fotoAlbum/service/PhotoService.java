@@ -43,6 +43,7 @@ public class PhotoService {
 
     // metodo per creare una pizza
     public Photo createPhoto(Photo photo) {
+        photo.setId(null);
         return photoRepository.save(photo);
     }
 
