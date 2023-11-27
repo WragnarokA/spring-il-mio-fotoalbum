@@ -10,6 +10,15 @@ INSERT INTO categories (name) VALUES('Architecture');
 INSERT INTO categories (name) VALUES('Still life');
 INSERT INTO categories (name) VALUES('Events');
 
+INSERT INTO roles (id, name) VALUES(1, 'ADMIN');
+INSERT INTO roles (id, name) VALUES(2, 'USER');
+
+INSERT INTO users (email, first_name, last_name, password, registered_ad) VALUES('will@gmail.com', 'Will', 'Smith', '{noop}will', '2023-12-15');
+INSERT INTO users (email, first_name, last_name, password, registered_ad) VALUES('maria@gmail.com', 'Maria', 'Dibi', '{noop}maria', '2023-12-25');
+
+INSERT INTO `users_roles`(`user_id`, `roles_id`) VALUES ('1','1')
+INSERT INTO `users_roles`(`user_id`, `roles_id`) VALUES ('1','2')
+INSERT INTO `users_roles`(`user_id`, `roles_id`) VALUES ('2','2')
 
 
 

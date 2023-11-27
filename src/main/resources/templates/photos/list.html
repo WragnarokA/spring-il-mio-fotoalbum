@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org">
 <head th:insert="fragments/resources :: headResources('Photo Gallery')"></head>
 
 <body style="background-color: #222">
@@ -26,7 +26,8 @@
 		</div>
 		<hr class="">
 		<div th:replace="fragments/components :: message"></div>
-		<a th:href="@{/photos/create}" class="btn bg-success p-2 text-white bg-opacity-50 mb-3   ">Add new Photo</a>
+		<a th:href="@{/photos/create}" sec:authorize="hasAuthority('ADMIN')"
+		   class="btn bg-success p-2 text-white bg-opacity-50 mb-3   ">Add new Photo</a>
 		
 		<div class="d-flex  flex-wrap justify-content-between gap-5">
 			
@@ -50,9 +51,10 @@
 					<div class="btn-group" role="group" aria-label="Basic mixed styles example">
 						<a th:href="@{photos/show/{id}(id=*{id})}" type="button" class="btn btn-success">Details
 							<i class="fa-solid fa-image"></i></a>
-						<a th:href="@{photos/edit/{id}(id=*{id})}" type="button" class="btn btn-warning text-light">Edit
+						<a sec:authorize="hasAuthority('ADMIN')" th:href="@{photos/edit/{id}(id=*{id})}" type="button"
+						   class="btn btn-warning text-light">Edit
 							<i class="fa-solid fa-pen-to-square"></i></a>
-						<form method="POST" th:action="@{/photos/delete/{id}(id=*{id})}"
+						<form sec:authorize="hasAuthority('ADMIN')" method="POST" th:action="@{/photos/delete/{id}(id=*{id})}"
 						      onsubmit="return confirm('Are you sure?')">
 							<button class="btn btn-danger" type="submit">
 								Delete <i class="fa-solid fa-trash"></i>
